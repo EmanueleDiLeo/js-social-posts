@@ -61,6 +61,7 @@ const container = document.querySelector("#container");
 container.innerHTML = "";
 let count = [];
 let date = [];
+let imgNull = [];
 
 posts.forEach((element) => {
 
@@ -68,6 +69,10 @@ posts.forEach((element) => {
 
     count.push(likes);
     date.push(created);
+
+    if(author.image === null){
+        imgNull.push(id-1);
+    }
 
     container.innerHTML += 
     `
@@ -105,10 +110,12 @@ posts.forEach((element) => {
 });
 
 console.log(count);
+console.log(imgNull);
 
 const btns = document.getElementsByClassName("like-button");
 let like = document.getElementsByClassName("js-likes-counter");
 let dates = document.getElementsByClassName("post-meta__time");
+let imgsP = document.getElementsByClassName("post-meta__icon");
 
 console.log(btns[0].classList.contains("like-button--liked"));
 console.log(btns[1].classList.contains("like-button--liked"));
@@ -160,5 +167,27 @@ function dateIta(){
         let newDate = date[i].split("-").reverse().join("-");
         console.log(date[i]=newDate);
         dates[i].innerHTML = date[i];
+    }
+}
+
+imgProfile();
+
+function imgProfile(){
+    let count = 0;
+    for(let post of posts){
+        if(imgNull.includes(count)){
+            let nameArray = post.author.name.split(" ");
+            let nameChar = nameArray[0].charAt(0);
+            let surnameChar = nameArray[1].charAt(0);
+            
+            imgsP[count].innerHTML = 
+            `   
+            <div class="profile-pic">
+                <h2>${nameChar + surnameChar}</h2>
+            </div>
+            `;
+            console.log(nameChar + surnameChar);
+        }
+        count++;
     }
 }
