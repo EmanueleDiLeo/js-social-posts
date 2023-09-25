@@ -94,7 +94,7 @@ posts.forEach((element) => {
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${count[id-1]}</b> persone
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
                     </div>
                 </div> 
             </div>            
@@ -115,6 +115,8 @@ console.log(like[0]);
 console.log(like[1]);
 console.log(like[2]);
 
+let listId = [];
+
 posts.forEach((element) => {
     const {id} = element;
     btns[id-1].addEventListener("click",function(){
@@ -125,6 +127,11 @@ posts.forEach((element) => {
             console.log(count[id-1]);
             console.log(like[id-1]);
             btns[id-1].classList.remove("like-button--liked");
+            for(let i = 0; i < listId.length; i++){
+                if(listId[i] === id){
+                    listId.splice(i, 1);
+                }
+            }
             
         }
         else{
@@ -134,8 +141,10 @@ posts.forEach((element) => {
             console.log(count[id-1]);
             console.log(like[id-1]);
             btns[id-1].classList.add("like-button--liked");
+            listId.push(id);
             
         }
+        console.log(listId);
         console.log(btns[id-1].classList.contains("like-button--liked"));
         like[id-1].innerHTML = count[id-1];
     });
