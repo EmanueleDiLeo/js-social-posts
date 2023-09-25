@@ -21,3 +21,6 @@ Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 3. Al click su un pulsante “Mi Piace” di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
 
 
+## Svolgimento
+
+1. creare un for Each dove inserire dentro il container i dati degli oggetti
