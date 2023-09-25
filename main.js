@@ -60,12 +60,14 @@ const posts = [
 const container = document.querySelector("#container");
 container.innerHTML = "";
 let count = [];
+let date = [];
 
 posts.forEach((element) => {
 
     const {id,content,media,author,likes,created} = element;
 
     count.push(likes);
+    date.push(created);
 
     container.innerHTML += 
     `
@@ -106,6 +108,7 @@ console.log(count);
 
 const btns = document.getElementsByClassName("like-button");
 let like = document.getElementsByClassName("js-likes-counter");
+let dates = document.getElementsByClassName("post-meta__time");
 
 console.log(btns[0].classList.contains("like-button--liked"));
 console.log(btns[1].classList.contains("like-button--liked"));
@@ -149,3 +152,13 @@ posts.forEach((element) => {
         like[id-1].innerHTML = count[id-1];
     });
 });
+
+dateIta();
+
+function dateIta(){
+    for(let i = 0; i < date.length; i++){
+        let newDate = date[i].split("-").reverse().join("-");
+        console.log(date[i]=newDate);
+        dates[i].innerHTML = date[i];
+    }
+}
