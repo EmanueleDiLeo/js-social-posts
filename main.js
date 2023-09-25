@@ -59,10 +59,13 @@ const posts = [
 
 const container = document.querySelector("#container");
 container.innerHTML = "";
+let count = [];
 
 posts.forEach((element) => {
 
     const {id,content,media,author,likes,created} = element;
+
+    count.push(likes);
 
     container.innerHTML += 
     `
@@ -91,10 +94,49 @@ posts.forEach((element) => {
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${count[id-1]}</b> persone
                     </div>
                 </div> 
             </div>            
         </div>
     `
+});
+
+console.log(count);
+
+const btns = document.getElementsByClassName("like-button");
+let like = document.getElementsByClassName("js-likes-counter");
+
+console.log(btns[0].classList.contains("like-button--liked"));
+console.log(btns[1].classList.contains("like-button--liked"));
+console.log(btns[2].classList.contains("like-button--liked"));
+
+console.log(like[0]);
+console.log(like[1]);
+console.log(like[2]);
+
+posts.forEach((element) => {
+    const {id} = element;
+    btns[id-1].addEventListener("click",function(){
+        if(btns[id-1].classList.contains("like-button--liked")){
+            console.log(count[id-1]);
+            console.log(like[id-1]);
+            count[id-1]--;
+            console.log(count[id-1]);
+            console.log(like[id-1]);
+            btns[id-1].classList.remove("like-button--liked");
+            
+        }
+        else{
+            console.log(count[id-1]);
+            console.log(like[id-1]);
+            count[id-1]++;
+            console.log(count[id-1]);
+            console.log(like[id-1]);
+            btns[id-1].classList.add("like-button--liked");
+            
+        }
+        console.log(btns[id-1].classList.contains("like-button--liked"));
+        like[id-1].innerHTML = count[id-1];
+    });
 });
