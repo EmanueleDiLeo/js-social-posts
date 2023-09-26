@@ -56,7 +56,6 @@ const posts = [
     }
 ];
 
-
 const container = document.querySelector("#container");
 container.innerHTML = "";
 let count = [];
@@ -109,21 +108,10 @@ posts.forEach((element) => {
     `
 });
 
-console.log(count);
-console.log(imgNull);
-
-const btns = document.getElementsByClassName("like-button");
+const btns = document.querySelectorAll(".like-button");
 let like = document.getElementsByClassName("js-likes-counter");
 let dates = document.getElementsByClassName("post-meta__time");
 let imgsP = document.getElementsByClassName("post-meta__icon");
-
-console.log(btns[0].classList.contains("like-button--liked"));
-console.log(btns[1].classList.contains("like-button--liked"));
-console.log(btns[2].classList.contains("like-button--liked"));
-
-console.log(like[0]);
-console.log(like[1]);
-console.log(like[2]);
 
 let listId = [];
 
@@ -131,31 +119,21 @@ posts.forEach((element) => {
     const {id} = element;
     btns[id-1].addEventListener("click",function(){
         if(btns[id-1].classList.contains("like-button--liked")){
-            console.log(count[id-1]);
-            console.log(like[id-1]);
             count[id-1]--;
-            console.log(count[id-1]);
-            console.log(like[id-1]);
             btns[id-1].classList.remove("like-button--liked");
             for(let i = 0; i < listId.length; i++){
                 if(listId[i] === id){
                     listId.splice(i, 1);
                 }
             }
-            
         }
         else{
-            console.log(count[id-1]);
-            console.log(like[id-1]);
             count[id-1]++;
-            console.log(count[id-1]);
-            console.log(like[id-1]);
             btns[id-1].classList.add("like-button--liked");
             listId.push(id);
             
         }
         console.log(listId);
-        console.log(btns[id-1].classList.contains("like-button--liked"));
         like[id-1].innerHTML = count[id-1];
     });
 });
@@ -165,8 +143,7 @@ dateIta();
 function dateIta(){
     for(let i = 0; i < date.length; i++){
         let newDate = date[i].split("-").reverse().join("-");
-        console.log(date[i]=newDate);
-        dates[i].innerHTML = date[i];
+        dates[i].innerHTML = newDate;
     }
 }
 
@@ -182,11 +159,10 @@ function imgProfile(){
             
             imgsP[count].innerHTML = 
             `   
-            <div class="profile-pic">
+            <div class="profile-pic-default">
                 <h2>${nameChar + surnameChar}</h2>
             </div>
             `;
-            console.log(nameChar + surnameChar);
         }
         count++;
     }
